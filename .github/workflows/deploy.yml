@@ -29,8 +29,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+        - name: Install dependencies
+        run: |
+          rm -rf node_modules
+          npm install
+
+      - name: Fix Vite permissions
+        run: chmod +x node_modules/.bin/vite
 
       - name: Build React application
         run: npm run build
